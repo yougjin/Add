@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title> 广告图片轮播切换</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="adver">
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+        <li>6</li>
+    </ul>
+    <div class="arrowLeft"><</div><div class="arrowRight">></div>
+</div>
+<script src="js/jquery-1.12.4.js" type="text/javascript" charset="utf-8"></script>
+<script>
+	$(function(){
+		var i=0;
+		$(".adver").mouseover(function(){
+			$(".arrowLeft").show();
+			$(".arrowRight").show();
+		});
+		$(".adver").mouseout(function(){
+			$(".arrowLeft").hide();
+			$(".arrowRight").hide();
+		})
+		
+		$(".arrowRight").click(function(){
+			i++;
+			if(i>5){
+				i=5;
+				alert("已经是最后一张图片了")
+			}
+			$(".adver").css("background","url('images/adver0"+(i+1)+".jpg')");
+			$("li:nth-of-type("+(i+1)+")").css("background","orange");
+			$("li:nth-of-type("+(i+1)+")").siblings().css("background","#333333");
+		})
+		$(".arrowLeft").click(function(){
+			i--;
+			if(i<0){
+				i=0;
+				alert("这是第一张图片了");
+			}
+			$(".adver").css("background","url('images/adver0"+(i+1)+".jpg')");
+			$("li:nth-of-type("+(i+1)+")").css("background","orange");
+			$("li:nth-of-type("+(i+1)+")").siblings().css("background","#333333");
+		})
+		
+		$("ul li").mousemove(function(){
+			i=$(this).index();
+			   $(".adver").css("background","url(images/adver0" + (i+1) + ".jpg)");
+				$("ul li:nth-of-type("+(i+1)+")").css("background","orange")
+				$("ul li:nth-of-type("+(i+1)+")").siblings().css("background","#333333");
+		})
+		
+		  var runId = "";
+    function run() {
+      runId = setInterval(function(){
+        i++;
+        if(i > 5) {
+          i = 0;
+        }
+        $(".adver").css("background","url(images/adver0" + (i+1) + ".jpg)");
+        $("ul li:nth-of-type("+(i+1)+")").css("background","orange").siblings().css("background","black");
+      },1000);
+    }
+    run();
+    //移入暂停和移出恢复定时滚动
+    $(".adver").mousemove(function () {
+      clearInterval(runId);
+    }).mouseout(function () {
+      run();
+    })
+	})
+</script>
+</body>
+</html>

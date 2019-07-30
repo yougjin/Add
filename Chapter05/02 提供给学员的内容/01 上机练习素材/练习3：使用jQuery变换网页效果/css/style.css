@@ -1,0 +1,23 @@
+a{
+	text-decoration: none;
+}
+
+img{
+	float: left;
+}
+
+
+ul{
+	
+	list-style: none;
+}
+
+h2{
+	background-color:red;
+	color:white;
+	font-weight:bold;
+	}
+	
+	.text{
+		display: none;
+	}

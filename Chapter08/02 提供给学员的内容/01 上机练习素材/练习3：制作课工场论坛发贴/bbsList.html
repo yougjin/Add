@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>课工场论坛列表</title>
+    <link href="css/bbs.css" rel="stylesheet">
+</head>
+<body>
+<div class="bbs">
+    <header><span>我要发帖</span></header>
+    <section>
+        <ul></ul>
+    </section>
+    <div class="post">
+        <input class="title" placeholder="请输入标题（1-50个字符）">
+        所属版块：<select><option>请选择版块</option><option>电子书籍</option><option>新课来了</option><option>新手报到</option><option>职业规划</option></select>
+        <textarea class="content"></textarea>
+        <input class="btn" value="发布">
+    </div>
+</div>
+
+<script src="js/jquery-1.12.4.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+	  $(document).ready(function() {
+        var i=0;
+        $("header").click(function(){
+            if(i>0){
+                $(".post").hide();
+                i=0;
+            }else{
+                $(".post").show(); 
+                i=1;
+            }
+        });
+        $(".btn").click(function(){
+            var $li=$("<li></li>");
+            var tou=new Array("tou01.jpg","tou02.jpg","tou03.jpg","tou04.jpg");
+            var r=parseInt(Math.random()*tou.length);
+            var $img=$("<img src=images/"+tou[r]+" />");
+            $li.append($img); 
+            var $h1=$("<h1>"+$(".title").val()+"</h1>");
+            $li.append($h1);
+            var date=new Date();
+            var year=date.getFullYear();
+            var month=date.getMonth()+1;
+            var day=date.getDate();
+            var hour=date.getHours();
+            var minute=date.getMinutes();
+            var second=date.getSeconds();
+            var time=year+"-"+month+"-"+day+" "+hour+":"+minute+":"+second; 
+            var $p=$("<p>"+$("select").val()+"<span>发布时间："+time+"</span></p>");
+            $li.append($p);
+            $("ul").prepend($li);
+            $(".post").hide();
+        });
+
+
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>创建构造函数显示自我介绍</title>
+    <style>
+        body{font-size: 14px; font-family: "Arial", "微软雅黑"; line-height: 28px;}
+    </style>
+</head>
+<body>
+<div id="intro"></div>
+<script>
+    function Student(name,age,intro){
+        this.name=name;
+        this.age=age;
+        this.intro=intro;
+        this.showIntro=showIntro;
+    }
+    function showIntro(){
+        var p=document.createElement("p");
+        var str="姓名："+this.name+"<br/>年龄："+this.age+"<br/>自我介绍："+this.intro;
+        p.innerHTML=str;
+        return p;
+    }
+    var student1=new Student("王小明",16,"我是高中一年级的学生，身高1.8米，很帅，我喜欢学习语文和英语。");
+    var student2=new Student("黄妞妞",6,"我今年6岁了，常可爱，马上就可以上小学了，就可能有好多好多的小朋友了。");
+    document.getElementById("intro").appendChild(student1.showIntro());
+    document.getElementById("intro").appendChild(student2.showIntro());
+</script>
+</body>
+</html>

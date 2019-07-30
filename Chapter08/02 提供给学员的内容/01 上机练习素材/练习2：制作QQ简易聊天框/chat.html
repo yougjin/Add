@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>QQ简易聊天框</title>
+    <link rel="stylesheet" href="css/chat.css">
+</head>
+<body>
+<section id="chat">
+    <div class="chatBody"></div>
+    <div><img src="images/icon.jpg"></div>
+    <textarea class="chatText"></textarea>
+    <div class="btn"><span>关闭(C)</span><span id="send">发送(S)</span></div>
+</section>
+
+<script src="js/jquery-1.12.4.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+	  $(document).ready(function() {
+               $("#send").click(function(){
+                qqQend();
+        });     
+        $(document).keydown(function(event){
+            if(event.keyCode=="13"){
+                qqQend();
+            }
+        });
+
+        function qqQend(){
+            var $text=$(".chatText").val();
+            if($text==""){
+                alert("请输入聊天内容");
+            }else{      
+            var tou=new Array(1,2,3);
+            var names=new Array("时尚依人","松松","六月奇迹");
+            var r=parseInt(Math.random()*tou.length);
+            var touPath="images/head0"+tou[r]+".jpg";
+            $name=names[r];
+            $li=$("<li></li>");
+            var $img=$("<img src="+touPath+" />");
+            $li.append($img);
+            var $h1=("<h1>"+$name+"</h1>");
+            $li.append($h1);
+            var $p=$("<p>"+$text+"</p>");
+            $li.append($p);
+            $(".chatBody").append($li);
+                        $(".chatText").val('');
+            }
+        }
+    });
+</script>
+</body>
+</html>
